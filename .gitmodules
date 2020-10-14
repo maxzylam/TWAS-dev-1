@@ -1,0 +1,9 @@
+[submodule "moloc"]
+	path = moloc
+	url = https://github.com/clagiamba/moloc
+[submodule "MetaXcan"]
+	path = MetaXcan
+	url = https://github.com/hakyimlab/MetaXcan.git
+[submodule "focus"]
+	path = focus
+	url = https://github.com/bogdanlab/focus.git
