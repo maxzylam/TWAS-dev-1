@@ -107,3 +107,10 @@ R
 
 Based on the codes above, we have set up R with i) general dependencies e.g. tidyverse that would help a lot with downstream data processing ii) We also downloaded the dependencies for coloc and coloc itself.  
 
+After we have the Python and R software set up  - we want to get the various software into a single repo. We have already done this for you. And you would be able to get the repo on github. Go ahead and download the repo. The git in your environment would have been set up in the earlier step. 
+
+```
+git clone https://github.com/maxzylam/TWAS-dev-1.git
+git submodule update --init --recursive
+```
+
