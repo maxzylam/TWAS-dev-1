@@ -114,3 +114,97 @@ git clone https://github.com/maxzylam/TWAS-dev-1.git
 git submodule update --init --recursive
 ```
 
+Set up the MetaXcan environment.
+<br>
+
+If you were following the instructions above, there might be a necessity to close the terminal and reboot for changes to take place prior to running the conda command. 
+```
+conda env create --file metaxcan_python_env.yml
+```
+<br>
+Set up FOCUS finemapping environment
+
+```
+conda env create --file pyfocus_python_env.yml
+
+    conda activate pyfocus
+
+    cd focus/
+
+    python setup.py install
+
+    pip install dataclasses
+```
+Note: Just briefly describing what is going on for the FOCUS installation. The original github repo does not prompt the user to set up a conda environment. That might be a problem especially if the user is not really setting this environment up from scratch and there are already some depdencies in there. By running the installation script provided in the FOCUS repo, users might end up messing up their current environment dependencies. Or the FOCUS dependencies would simply not install. 
+
+So, what we are doing here, is to first create an environment for FOCUS using an environment file. Once the environment is set up we could then get into the focus folder and run the installation script. During the process, we also realized that the dataclasses module could not be installed in the script provided, hence a separate command is called to install the dataclasses module. 
+
+## **Download Reference Files**
+
+We have put together a script that would download various reference databases/annotations that would allow the user to run TWAS using the various methods covered in this tutorial. 
+
+```
+# Make Reference Files Folder 
+
+    mkdir Reference_files 
+
+    cd Reference_files 
+
+# predixcan
+
+    mkdir predixcan
+
+    cd predixcan
+
+    # GTEx v8
+    wget https://zenodo.org/record/3519321/files/elastic_net_eqtl.tar
+    wget https://zenodo.org/record/3519321/files/elastic_net_sqtl.tar
+    wget https://zenodo.org/record/3519321/files/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz
+    wget https://zenodo.org/record/3519321/files/gtex_v8_splicing_elastic_net_snp_smultixcan_covariance.txt.gz
+    wget https://github.com/laurahuckins/CMC_DLPFC_prediXcan/blob/master/DLPFC_newMetax.db.tar.gz
+
+    # CMC DLPFC
+    wget https://www.dropbox.com/s/galqr91qc66kdr4/DLPFC.cov.txt.gz
+    wget https://github.com/laurahuckins/CMC_DLPFC_prediXcan/blob/master/DLPFC_newMetax.db.tar.gz
+
+    cd ..
+
+# SMR
+
+    mkdir SMR
+
+    cd SMR
+
+    # CAGE eQTL summary data [Blood eQTL]
+    # CAGE eQTL summary data (n = 2765; Luke R. Lloyd-Jones et al. 2017 AJHG) in SMR binary (BESD) format:
+    wget https://cnsgenomics.com/data/SMR/cage_eqtl_data_hg19.tgz
+
+
+    # GTEx v7 [Large file]
+    # V7 release of the GTEx eQTL summary data (n = 80 - 491; GTEx Consortium 2017 Nature) in SMR binary (BESD) format
+    wget https://cnsgenomics.com/data/SMR/GTEx_V7_cis_eqtl_summary.tar.gz
+
+    # Brain-eMeta eQTL data (estimated effective n = 1194)
+    wget https://cnsgenomics.com/data/SMR/Brain-eMeta.tar.gz
+
+    # PsychENCODE eQTL summary data
+    # PsychENCODE project (n = 1387). Only the data of SNPs in a 1 Mb window around each gene are available.
+    wget http://cnsgenomics.com/data/SMR/PsychENCODE_cis_eqtl_PEER50_summary.tar.gz
+    wget http://cnsgenomics.com/data/SMR/PsychENCODE_cis_eqtl_HCP100_summary.tar.gz
+
+    cd ..
+
+# FOCUS 
+
+    mkdir focus 
+
+    cd focus 
+
+    wget https://data.broadinstitute.org/alkesgroup/LDSCORE/1000G_Phase3_plinkfiles.tgz
+    tar -xvzf 1000G_Phase3_plinkfiles.tgz
+
+    wget https://www.dropbox.com/s/ep3dzlqnp7p8e5j/focus.db
+
+    cd ..
+```
+
