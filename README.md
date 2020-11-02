@@ -150,6 +150,34 @@ We have put together a script that would download various reference databases/an
 
     cd Reference_files 
 
+# 1000 genomes reference panel
+
+    mkdir 1000G_Ref
+
+    cd 1000G_Ref
+
+    mkdir EAS_ref
+    cd EAS_ref
+
+    for i in {1..22}
+        do 
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eas-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EAS.bed
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eas-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EAS.bim
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eas-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EAS.fam
+    done 
+
+    cd ..
+
+    mkdir EUR_ref
+    cd EUR_ref
+
+    for i in {1..22}
+        do 
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eur-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EUR.bed
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eur-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EUR.bim
+            wget https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eur-1/ALL_v5a.20130502.chr"$i"_1KG_0517.impute.plink.EUR.fam
+    done 
+
 # predixcan
 
     mkdir predixcan
@@ -161,7 +189,7 @@ We have put together a script that would download various reference databases/an
     wget https://zenodo.org/record/3519321/files/elastic_net_sqtl.tar
     wget https://zenodo.org/record/3519321/files/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz
     wget https://zenodo.org/record/3519321/files/gtex_v8_splicing_elastic_net_snp_smultixcan_covariance.txt.gz
-    wget https://github.com/laurahuckins/CMC_DLPFC_prediXcan/blob/master/DLPFC_newMetax.db.tar.gz
+    
 
     # CMC DLPFC
     wget https://www.dropbox.com/s/galqr91qc66kdr4/DLPFC.cov.txt.gz
@@ -208,3 +236,36 @@ We have put together a script that would download various reference databases/an
     cd ..
 ```
 
+**Example script for Spredixcan**
+```
+$path2predixcan_env $path2spredixcan/SPrediXcan.py \
+--model_db_path data/DGN-WB_0.5.db \
+--covariance data/covariance.DGN-WB_0.5.txt.gz \
+--gwas_folder data/GWAS \
+--gwas_file_pattern ".*gz" \
+--snp_column SNP \
+--effect_allele_column A1 \
+--non_effect_allele_column A2 \
+--beta_column BETA \
+--pvalue_column P \
+--output_file results/test.csv
+```
+
+**Example script for SMR**
+```
+$path2smr/smr \
+--bfile mydata \
+--gwas-summary mygwas.ma \
+--beqtl-summary myeqtl \
+--out mysmr \
+--thread-num 10 
+```
+
+If you need access to reference panel plink files you may download them from here: 
+https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eur-1/
+https://personal.broadinstitute.org/hhuang//public//cafmap-reffiles-eas-1/
+
+**Example script for FOCUS**
+```
+focus finemap LDL_2010.clean.sumstats.gz 1000G.EUR.QC.1 gtex_v7.db --chr 1 --tissue adipose --out LDL_2010.chr1
+```
