@@ -69,19 +69,23 @@
         
     # GCTA-COJO format for SMR-HEIDI
 
+        # make folder for smr sumstats input 
+            mkdir $(pwd)/smrinput
+        
+        # process sumstats 
         zcat $sumstats_1.gz | awk -v SNP=$SNP -v A1=$A1 -v A2=$A2 -v FRQ=$FRQ -v BETA=$BETA -v SE=$SE -v PVAL=$PVAL -v N=$N '{print $SNP, $A1, $A2, $FRQ, $BETA, $SE, $PVAL, $N}' | sed '1,1d' | sed '1 i\SNP A1 A2 freq b se p N' > $output.gctacojo.input.txt && gzip $output.gctacojo.input.txt 
 
         # split to chr
 
         for i in {1..22}
             do 
-                zcat $output.gctacojo.input.txt.gz | awk -v CHR=$i '{if($2==CHR) print $0}' | sed '1 i\SNP A1 A2 freq b se p N' > $output.gctacojo.input.chr"$i".txt
+                zcat $output.gctacojo.input.txt.gz | awk -v CHR=$i '{if($2==CHR) print $0}' | sed '1 i\SNP A1 A2 freq b se p N' > $(pwd)/smrinput/$output.gctacojo.input.chr"$i".txt
 
-                gzip $output.gctacojo.input.chr"$i".txt
+                gzip $(pwd)/smrinput/$output.gctacojo.input.chr"$i".txt
 
         done
 
-            checkgctasumstats=$(ls $output.gctacojo.input.chr*.txt.gz | wc | awk '{print $1}')
+            checkgctasumstats=$(ls $(pwd)/smrinput/$output.gctacojo.input.chr*.txt.gz | wc | awk '{print $1}')
 
                 if [ "$checkgctasumstats" == 22 ]; then 
 
@@ -99,7 +103,9 @@
 
     # S-Predixcan format
 
-           zcat $sumstats_1.gz | awk -v SNP=$SNP -v CHR=$CHR -v BP=$BP -v A1=$A1 -v A2=$A2 -v BETA=$BETA -v PVAL=$PVAL '{print $SNP, $CHR, $BP, $A1, $A2, $BETA, $PVAL}' > $output.spredixcan.input.txt && gzip $output.spredixcan.input.txt 
+         # make folder for spredixcan inputq
+          
+          zcat $sumstats_1.gz | awk -v SNP=$SNP -v CHR=$CHR -v BP=$BP -v A1=$A1 -v A2=$A2 -v BETA=$BETA -v PVAL=$PVAL '{print $SNP, $CHR, $BP, $A1, $A2, $BETA, $PVAL}' > $output.spredixcan.input.txt && gzip $output.spredixcan.input.txt 
 
         # split to chr  
 
@@ -158,8 +164,9 @@
         
         processes=$(lscpu | sed -n '4,4p' | awk '{print $2}')
         ls $path2ref/*.bim | sed 's/*.bim//g' > genomeref.list 
+        
 
-            $path2smr/smr_Linux --bfile $path2ref/mydata --gwas-summary $output.gctacojo.input.chr"$i".txt --beqtl-summary myeqtl --maf $maf --out mysmr --thread-num $processes 
+            $path2smr/smr_Linux --bfile $path2ref/$g --gwas-summary $output.gctacojo.input.chr"$i".txt --beqtl-summary myeqtl --maf $maf --out mysmr --thread-num $processes 
 
 ################################################
 
@@ -174,7 +181,7 @@
 
         while read p
             do 
-                echo "$path2predixcan_env/python $path2spredixcan/SPrediXcan.py --model_db_path $path2oredixdb/$p --covariance $path2oredixdb/$path2predixcov --gwas_folder $path2gwas/GWAS/ --gwas_file_pattern ".*gz" --snp_column SNP --effect_allele_column A1 --non_effect_allele_column A2 --beta_column BETA --pvalue_column P --output_file $outputdir/$output.$p.csv" > $output.$p.spredixcan.sh
+                echo "$path2predixcan_env/python $path2spredixcan/SPrediXcan.py --model_db_path $path2oredixdb/$p --covariance $path2oredixdb/$path2predixcov --gwas_folder $path2gwasdir --gwas_file_pattern ".*gz" --snp_column SNP --effect_allele_column A1 --non_effect_allele_column A2 --beta_column BETA --pvalue_column P --output_file $outputdir/$output.$p.csv" > $output.$p.spredixcan.sh
         done < $output.$path2predixdb.list 
 
         chmod +x *.spredixcan.sh
