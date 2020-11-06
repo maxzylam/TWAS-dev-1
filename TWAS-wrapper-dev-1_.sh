@@ -334,6 +334,7 @@
             do 
                 echo "$focus_env/python $path2focus/focus finemap $sumstats $reference $eqtlfile --chr "$chr" --out $outputdir/$output.focusout.chr"$chr""
         done 3< $output.focusref.list 4< $output.chr.list > $output.focus.analysis.sh
+    fi
 
 ################################################
 
