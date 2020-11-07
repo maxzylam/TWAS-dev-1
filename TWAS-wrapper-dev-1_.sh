@@ -50,7 +50,7 @@
                     SNP=$VALUE
                     ;;
             --CHR)
-                    CNR=$VALUE
+                    CHR=$VALUE
                     ;;
             --BP)
                     BP=$VALUE
