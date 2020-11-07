@@ -3,6 +3,25 @@
 
     #############
     # EAS_MDD #
+
+        #input 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=eas_mdd \
+                --sumstats=mdd-scz-eas.mtag.ldscmat_trait_1.txt.gz \
+                --SNP=1 \
+                --CHR=2 \
+                --BP=3 \
+                --A1=4 \
+                --A2=5 \
+                --FRQ=8 \
+                --BETA=9 \
+                --SE=10 \
+                --PVAL=12 \
+                --N=7 \
+                --twasmode=input \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=eas_mdd \
@@ -42,6 +61,25 @@
 
     #############
     # EAS_MDDx #
+
+        #input 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=eas_sz \
+                --sumstats=mdd-scz-eur-eas-trait1-run1.mtag.xpopmat_trait_1.txt.gz \
+                --SNP=1 \
+                --CHR=2 \
+                --BP=3 \
+                --A1=4 \
+                --A2=5 \
+                --FRQ=8 \
+                --BETA=9 \
+                --SE=10 \
+                --PVAL=12 \
+                --N=7 \
+                --twasmode=input \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=eas_mddx \
@@ -80,6 +118,25 @@
 
     #############
     # EAS_SZ #
+
+        #input 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=eas_sz \
+                --sumstats=mdd-scz-eas.mtag.ldscmat_trait_2.txt.gz \
+                --SNP=1 \
+                --CHR=2 \
+                --BP=3 \
+                --A1=4 \
+                --A2=5 \
+                --FRQ=8 \
+                --BETA=9 \
+                --SE=10 \
+                --PVAL=12 \
+                --N=7 \
+                --twasmode=input \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=eas_sz \
