@@ -279,11 +279,16 @@
             do ls $inputdir/*.txt | grep -w chr"$i" 
         done > smrsumstats.list
 
+        for i in {1..22}
+            do
+                echo "$i" 
+        done > $output.chr.list
+
         
-        while read -u 3 -r genomeref && read -u 4 -r smrsumstats
+        while read -u 3 -r genomeref && read -u 4 -r chr
             do 
             
-                echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $smrsumstats.output --thread-num $processes" 
+                echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.$chr.output --thread-num $processes" 
             done 3< genomeref.list 4<smrsumstats.list > $output.smr.analysis_.sh
     fi
 
