@@ -24,28 +24,64 @@
         twasmode=smrheidi
         path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi
         path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref
-        inputdir=/home/mlam/gwas_cog_ncog/smrinput
+        inputdir=/home/mlam/gwas_cog/smrinput
         eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/Brain-eMeta
         eqtlfile=Brain-eMeta
         maf_filter=0.01
-        outputdir=/home/mlam/gwas_cog_ncog/smroutput
+        outputdir=/home/mlam/gwas_cog/smroutput
 
     # SPREDIXCAN
         output=cog_mtag
         twasmode=spredixcan
         path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models
         path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz
-        outputdir=/home/mlam/gwas_cog_ncog/spredixcanoutput
-        path2gwasdir=/home/mlam/gwas_cog_ncog/spredixcan
+        outputdir=/home/mlam/gwas_cog/spredixcanoutput
+        path2gwasdir=/home/mlam/gwas_cog/spredixcan
         path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin
         path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
 
     # FOCUS 
         output=cog_mtag
         twasmode=focus
-        sumstats=/home/mlam/gwas_cog_ncog/focus/cog_mtag.focus.input.sumstats.gz
+        sumstats=/home/mlam/gwas_cog/focus/cog_mtag.focus.input.sumstats.gz
         referencedir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/1000G_EUR_Phase3_plink
         eqtlfile=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/focus.db
         focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin
         path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
-        outputdir=/home/mlam/gwas_cog_ncog/focusoutputs
+        outputdir=/home/mlam/gwas_cog/focusoutputs
+
+    
+    # COGNITION
+        #smrheidi
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --twasmode=smrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_cog/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/Brain-eMeta \
+                --eqtlfile=Brain-eMeta \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_cog/smroutput
+
+        #spredixcan 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --twasmode=spredixcan \
+                --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models \
+                --path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz \
+                --outputdir=/home/mlam/gwas_cog/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_cog/spredixcan \
+                --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
+                --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
+
+        #focus
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --twasmode=focus \
+                --sumstats=/home/mlam/gwas_cog/focus/cog_mtag.focus.input.sumstats.gz \
+                --referencedir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/1000G_EUR_Phase3_plink \
+                --eqtlfile=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/focus.db \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin \
+                --outputdir=/home/mlam/gwas_cog/focusoutput    
