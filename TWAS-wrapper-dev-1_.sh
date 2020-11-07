@@ -288,7 +288,7 @@
         while read -u 3 -r genomeref && read -u 4 -r chr
             do 
             
-                echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.$chr.output --thread-num $processes" 
+                echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.smr.output --thread-num $processes" 
             done 3< genomeref.list 4<smrsumstats.list > $output.smr.analysis_.sh
     fi
 
