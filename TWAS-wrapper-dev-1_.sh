@@ -100,7 +100,7 @@
             --path2predixcan_env)
                     path2predixcan_env=$VALUE 
                     ;;
-            --path2predixcan)
+            --path2spredixcan)
                     path2predixcan=$VALUE
                     ;;        
             --focus_env)
