@@ -76,6 +76,12 @@
             --N)
                     N=$VALUE 
                     ;;
+            --processes)
+                    processes=$VALUE 
+                    ;;
+            --owm)
+                    owm=$VALUE 
+                    ;;
             --twasmode)
                     twasmode=$VALUE
                     ;;
@@ -168,8 +174,35 @@
         # GCTA-COJO format for SMR-HEIDI
 
             # make folder for smr sumstats input 
-                mkdir $(pwd)/smrinput
             
+            if [[ -d smrinput && -z "$owm" ]]; then 
+
+                echo "found smrinput folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d smrinput && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/smrinput
+            
+                mkdir $(pwd)/smrinput
+            fi 
+
+            if [ ! -d smrinput ]; then 
+                
+                echo "smrinput folder not found creating one now..."
+
+                mkdir $(pwd)/smrinput
+
+            fi
+
             # process sumstats 
             zcat $sumstats_1.gz | awk -v SNP=$SNP -v A1=$A1 -v A2=$A2 -v FRQ=$FRQ -v BETA=$BETA -v SE=$SE -v PVAL=$PVAL -v N=$N '{print $SNP, $A1, $A2, $FRQ, $BETA, $SE, $PVAL, $N}' | sed '1,1d' | sed '1 i\snp a1 a2 freq b se p n' > $output.gctacojo.input.txt && gzip $output.gctacojo.input.txt 
 
@@ -203,7 +236,36 @@
 
             # make folder for spredixcan inputq
 
+
+            if [[ -d spredixcan && -z "$owm" ]]; then 
+
+                echo "found spredixcan folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d spredixcan && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/spredixcan
+            
                 mkdir $(pwd)/spredixcan
+            fi 
+
+            if [ ! -d spredixcan ]; then 
+                
+                echo "spredixcan folder not found creating one now..."
+
+                mkdir $(pwd)/spredixcan
+
+            fi
+
+                
             
             zcat $sumstats_1.gz | awk -v SNP=$SNP -v CHR=$CHR -v BP=$BP -v A1=$A1 -v A2=$A2 -v BETA=$BETA -v PVAL=$PVAL '{print $SNP, $CHR, $BP, $A1, $A2, $BETA, $PVAL}' | sed '1,1d' | sed '1 i\SNP CHR BP A1 A2 BETA PVAL' > $output.spredixcan.input.txt && gzip $output.spredixcan.input.txt 
 
@@ -238,7 +300,34 @@
 
             # make folder for focus input
 
+
+            if [[ -d focus && -z "$owm" ]]; then 
+
+                echo "found focus folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d focus && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/focus
+            
                 mkdir $(pwd)/focus
+            fi 
+
+            if [ ! -d focus ]; then 
+                
+                echo "spredixcan folder not found creating one now..."
+
+                mkdir $(pwd)/focus
+
+            fi
 
             zcat $sumstats_1.gz | awk -v SNP=$SNP -v CHR=$CHR -v BP=$BP -v A1=$A1 -v A2=$A2 -v FRQ=$FRQ -v BETA=$BETA -v PVAL=$PVAL -v N=$N '{print $SNP, $CHR, $BP, $A1, $A2, $FRQ, $BETA, $PVAL, $N}' | sed '1,1d' | sed '1 i\SNP CHR BP A1 A2 FRQ BETA PVAL N' > $output.focus.input.txt
 
@@ -269,7 +358,34 @@
         
         processes=$(lscpu | sed -n '4,4p' | awk '{print $2}')
 
-        mkdir $(pwd)/smroutput
+            if [[ -d smroutput && -z "$owm" ]]; then 
+
+                echo "found smroutput folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d smroutput && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/smroutput
+            
+                mkdir $(pwd)/smroutput
+            fi 
+
+            if [ ! -d smroutput ]; then 
+                
+                echo "smrinput folder not found creating one now..."
+
+                mkdir $(pwd)/smroutput
+
+            fi
+    
 
         for i in {1..22}
             do ls $path2ref/*.bim | sed 's/.bim//g' | grep -e chr"$i"_ 
@@ -304,9 +420,34 @@
         ls $path2predixdb/*.db > $output.predixdb.list 
         ls -h $path2predixdb | grep db > $output.predixdb.names.list
 
+            if [[ -d spredixcanoutput && -z "$owm" ]]; then 
 
+                echo "found spredixcanoutput folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
 
-        mkdir $(pwd)/spredixcanoutput
+                exit 1
+            fi    
+            
+            if [[ -d spredixcanoutput && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/spredixcanoutput
+            
+                mkdir $(pwd)/spredixcanoutput
+            fi 
+
+            if [ ! -d spredixcanoutput ]; then 
+                
+                echo "smrinput folder not found creating one now..."
+
+                mkdir $(pwd)/spredixcanoutput
+
+            fi
+    
 
         while read -u 3 -r models && read -u 4 -r names
             do 
@@ -333,7 +474,35 @@
                 echo "$i" 
         done > $output.chr.list
 
-        mkdir $(pwd)/focusoutput
+
+            if [[ -d focusoutput && -z "$owm" ]]; then 
+
+                echo "found focusoutput folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d focusoutput && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/focusoutput
+            
+                mkdir $(pwd)/focusoutput
+            fi 
+
+            if [ ! -d focusoutput ]; then 
+                
+                echo "smrinput folder not found creating one now..."
+
+                mkdir $(pwd)/focusoutput
+
+            fi
+
 
         while read -u 3 -r reference && read -u 4 -r chr 
             do 
