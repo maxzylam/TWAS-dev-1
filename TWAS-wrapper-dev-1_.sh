@@ -401,11 +401,11 @@
         done > $output.chr.list
 
         
-        while read -u 3 -r genomeref && read -u 4 -r chr
+        while read -u 3 -r genomeref && read -u 4 -r chr && read -u 5 -r smrsumstats
             do 
             
                 echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.smr.output --thread-num $processes" 
-            done 3< genomeref.list 4<$output.chr.list > $output.smr.analysis_.sh
+            done 3< genomeref.list 4< $output.chr.list 5< smrsumstats.list > $output.smr.analysis_.sh
     fi
 
 ################################################
