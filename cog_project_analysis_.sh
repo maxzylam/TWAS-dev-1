@@ -114,6 +114,7 @@
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=ncog_gsem \
+                --owm=Y \
                 --twasmode=smrheidi \
                 --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
                 --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \

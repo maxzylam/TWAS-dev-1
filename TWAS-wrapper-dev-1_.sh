@@ -405,7 +405,7 @@
             do 
             
                 echo "$path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.smr.output --thread-num $processes" 
-            done 3< genomeref.list 4<smrsumstats.list > $output.smr.analysis_.sh
+            done 3< genomeref.list 4<$output.chr.list > $output.smr.analysis_.sh
     fi
 
 ################################################
