@@ -174,6 +174,25 @@
 
     #############
     # EAS_SZx #
+
+            #input 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=eas_sz \
+                --sumstats=mdd-scz-eur-eas-trait2-run1.mtag.xpopmat_trait_1.txt.gz \
+                --SNP=1 \
+                --CHR=2 \
+                --BP=3 \
+                --A1=4 \
+                --A2=5 \
+                --FRQ=8 \
+                --BETA=9 \
+                --SE=10 \
+                --PVAL=12 \
+                --N=7 \
+                --twasmode=input \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=eas_szx \
@@ -360,3 +379,4 @@
 
 
 /home/mlam/MDD_SZ_proj
+

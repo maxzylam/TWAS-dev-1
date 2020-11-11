@@ -404,10 +404,68 @@
         while read -u 3 -r genomeref && read -u 4 -r chr && read -u 5 -r smrsumstats
             do 
             
-                echo "nohup $path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.smr.output --thread-num $processes &" 
+                echo "nohup $path2smr/smr_Linux --bfile $genomeref --gwas-summary $smrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.smr.output &" 
             done 3< genomeref.list 4< $output.chr.list 5< smrsumstats.list > $output.smr.analysis_.sh
     fi
 
+################################################
+
+################################################
+### Process Multi SNP SMR and HEIDI analysis
+    
+    if [ "$twasmode" == "msmrheidi" ]; then
+        
+        processes=$(lscpu | sed -n '4,4p' | awk '{print $2}')
+
+            if [[ -d msmroutput && -z "$owm" ]]; then 
+
+                echo "found smroutput folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d msmroutput && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/msmroutput
+            
+                mkdir $(pwd)/msmroutput
+            fi 
+
+            if [ ! -d msmroutput ]; then 
+                
+                echo "smrinput folder not found creating one now..."
+
+                mkdir $(pwd)/msmroutput
+
+            fi
+    
+
+        for i in {1..22}
+            do ls $path2ref/*.bim | sed 's/.bim//g' | grep -e chr"$i"_ 
+        done > genomeref.list 
+
+        for i in {1..22}
+            do ls $inputdir/*.txt | grep -w chr"$i" 
+        done > msmrsumstats.list
+
+        for i in {1..22}
+            do
+                echo "$i" 
+        done > $output.chr.list
+
+        
+        while read -u 3 -r genomeref && read -u 4 -r chr && read -u 5 -r msmrsumstats
+            do 
+            
+                echo "nohup $path2smr/smr_Linux --bfile $genomeref --gwas-summary $msmrsumstats --beqtl-summary $eqtldir/$eqtlfile --maf $maf_filter --out $outputdir/$output.chr.$chr.msmr.output --smr-multi --set-wind 500 &" 
+            done 3< genomeref.list 4< $output.chr.list 5< msmrsumstats.list > $output.msmr.analysis_.sh
+    fi
 ################################################
 
 ################################################
