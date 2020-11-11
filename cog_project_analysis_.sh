@@ -55,6 +55,27 @@
     
     #############
     # COGNITION #
+        
+        #input 
+            
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --sumstats=cognition_mtag.1000G.EUR.ref.SumstatsQC.AF_0.005.INFO_0.3.AFB_0.15.results.finalqc.txt.gz \
+                --SNP=4 \
+                --CHR=6 \
+                --BP=7 \
+                --A1=8 \
+                --A2=9 \
+                --FRQ=11 \
+                --BETA=14 \
+                --SE=15 \
+                --PVAL=16 \
+                --N=17 \
+                --twasmode=input \
+                --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
+                --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+        
+        
         #smrheidi
            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=cog_mtag \
@@ -134,6 +155,7 @@
         #spredixcan 
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=cog_mtag \
+                --owm=Y \
                 --twasmode=spredixcan \
                 --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models \
                 --path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz \
@@ -251,6 +273,7 @@
 
 
         #spredixcan 
+
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=ncog_gsem \
                 --twasmode=spredixcan \
@@ -466,5 +489,15 @@
         --out check_ncog_globalrg_v2
 
 ####
-    # Generate NonCogsumstats 
+    # Test spredixcan 
+            
+                output=cog_mtag 
+                owm=Y 
+                twasmode=spredixcan 
+                path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models 
+                path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz 
+                outputdir=/home/mlam/gwas_cog/spredixcanoutput 
+                path2gwasdir=/home/mlam/gwas_cog/spredixcan 
+                path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin 
+                path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
 

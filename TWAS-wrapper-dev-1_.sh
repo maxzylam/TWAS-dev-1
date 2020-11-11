@@ -91,9 +91,6 @@
             --path2predixdb)
                     path2predixdb=$VALUE
                     ;;
-            --path2predixcov)
-                    path2predixcov=$VALUE 
-                    ;;
             --path2gwasdir)
                     path2gwasdir=$VALUE 
                     ;;
@@ -255,6 +252,12 @@
                 rm -r  $(pwd)/spredixcan
             
                 mkdir $(pwd)/spredixcan
+
+                for i in {1..22}
+                    do 
+                        mkdir $(pwd)/spredixcan/chr"$i"
+                done 
+
             fi 
 
             if [ ! -d spredixcan ]; then 
@@ -262,6 +265,11 @@
                 echo "spredixcan folder not found creating one now..."
 
                 mkdir $(pwd)/spredixcan
+
+                for i in {1..22}
+                    do 
+                        mkdir $(pwd)/spredixcan/chr"$i"
+                done 
 
             fi
 
@@ -273,13 +281,13 @@
 
             for i in {1..22}
                 do 
-                    zcat $output.spredixcan.input.txt.gz | awk -v CHR=$i '{if($2==CHR) print $0}' | sed '1 i\SNP CHR BP A1 A2 FRQ BETA PVAL' > $(pwd)/spredixcan/$output.spredixcan.input.chr"$i".txt 
+                    zcat $output.spredixcan.input.txt.gz | awk -v CHR=$i '{if($2==CHR) print $0}' | sed '1 i\SNP CHR BP A1 A2 BETA PVAL' > $(pwd)/spredixcan/chr"$i"/$output.spredixcan.input.chr"$i".txt 
 
-                    gzip $(pwd)/spredixcan/$output.spredixcan.input.chr"$i".txt 
+                    gzip $(pwd)/spredixcan/chr"$i"/$output.spredixcan.input.chr"$i".txt 
 
             done 
 
-                checkspredixcansumstats=$(ls $(pwd)/spredixcan/$output.spredixcan.input.chr*.txt.gz | wc | awk '{print $1}')
+                checkspredixcansumstats=$(ls $(pwd)/spredixcan/chr*/$output.spredixcan.input.chr*.txt.gz | wc | awk '{print $1}')
 
                     if [ "$checkspredixcansumstats" == 22 ]; then 
 
@@ -439,7 +447,7 @@
 
             if [ ! -d msmroutput ]; then 
                 
-                echo "smrinput folder not found creating one now..."
+                echo "msmrinput folder not found creating one now..."
 
                 mkdir $(pwd)/msmroutput
 
@@ -476,7 +484,9 @@
         # extract spredixcan scripts 
         
         ls $path2predixdb/*.db > $output.predixdb.list 
+        ls $path2predixdb/*.txt.gz > $output.predixdb.cov.list
         ls -h $path2predixdb | grep db > $output.predixdb.names.list
+        
 
             if [[ -d spredixcanoutput && -z "$owm" ]]; then 
 
@@ -500,19 +510,60 @@
 
             if [ ! -d spredixcanoutput ]; then 
                 
-                echo "smrinput folder not found creating one now..."
+                echo "spredixcanoutput folder not found creating one now..."
 
                 mkdir $(pwd)/spredixcanoutput
 
             fi
     
-
-        while read -u 3 -r models && read -u 4 -r names
+        for i in {1..22}
             do 
-                echo "$path2predixcan_env/python $path2spredixcan/SPrediXcan.py --model_db_path $models --covariance $path2predixcov --gwas_folder $path2gwasdir --gwas_file_pattern \".*gz\" --snp_column SNP --effect_allele_column A1 --non_effect_allele_column A2 --beta_column BETA --pvalue_column PVAL --output_file $outputdir/$output.$names.csv" 
-        done 3< $output.predixdb.list 4< $output.predixdb.names.list > $output.spredixcan.analysis_.sh
+                while read -u 3 -r models && read -u 4 -r names && read -u 5 -r covmat
+                    do 
+                        echo "nohup $path2predixcan_env/python $path2spredixcan/SPrediXcan.py --model_db_path $models --covariance $covmat --gwas_folder $path2gwasdir/chr"$i" --gwas_file_pattern \".*gz\" --snp_column SNP --effect_allele_column A1 --non_effect_allele_column A2 --beta_column BETA --pvalue_column PVAL --output_file $outputdir/$output.chr"$i".$names.csv" 
+                done 3< $output.predixdb.list 4< $output.predixdb.names.list 5< $output.predixdb.cov.list
+        done > $output.spredixcan.analysis_.sh
 
-     
+        # split spredixcan jobs
+
+            if [[ -d spredixcanjobs && -z "$owm" ]]; then 
+
+                echo "found spredixcanjobs folder"
+                echo " "
+                echo "If you wish to overwrite the folder make sure overwrite mode is flagged --owm=Y"
+                echo "exiting"
+
+                exit 1
+            fi    
+            
+            if [[ -d spredixcanjobs && "$owm" == "Y" ]]; then 
+
+                echo "Overwrite Mode is Turned ON...."
+                echo "Overwriting dir now....."
+
+                rm -r  $(pwd)/spredixcanjobs
+            
+                mkdir $(pwd)/spredixcanjobs
+            fi 
+
+            if [ ! -d spredixcanjobs ]; then 
+                
+                echo "spredixcanjobs folder not found creating one now..."
+
+                mkdir $(pwd)/spredixcanjobs
+
+            fi
+
+
+            totaljobs=$(wc $output.spredixcan.analysis_.sh | awk '{print $1}')
+            
+
+            for i in $(seq $totaljobs)
+                do 
+                    echo "cat $output.spredixcan.analysis_.sh | sed -n '"$i", "$i"p' > $(pwd)/spredixcanjobs/spredixcan_job"$i".sh"
+
+            done > spredixcan.split.jobs.sh
+            
 
     fi 
 ################################################
