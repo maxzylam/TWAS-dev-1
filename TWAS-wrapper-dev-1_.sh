@@ -564,7 +564,7 @@
 
         while read -u 3 -r reference && read -u 4 -r chr 
             do 
-                echo "$focus_env/python $path2focus/focus finemap $sumstats $reference $eqtlfile --chr "$chr" --out $outputdir/$output.focusout.chr"$chr""
+                echo "nohup $focus_env/python $path2focus/focus finemap $sumstats $reference $eqtlfile --chr "$chr" --out $outputdir/$output.focusout.chr"$chr" &"
         done 3< $output.focusref.list 4< $output.chr.list > $output.focus.analysis.sh
     fi
 

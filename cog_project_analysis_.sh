@@ -91,6 +91,45 @@
                 --eqtlfile=DER-08a_hg19_eQTL.significant \
                 --maf_filter=0.01 \
                 --outputdir=/home/mlam/gwas_cog/smroutput
+        
+        #msmr
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_cog/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/Brain-eMeta \
+                --eqtlfile=Brain-eMeta \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_cog/msmroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_cog/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_HCP100_summary \
+                --eqtlfile=Gandal_PsychENCODE_eQTL_HCP100+gPCs20_QTLtools \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_cog/msmroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_cog/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_PEER50_summary \
+                --eqtlfile=DER-08a_hg19_eQTL.significant \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_cog/msmroutput
+        
+
 
         #spredixcan 
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
@@ -143,11 +182,73 @@
                 --twasmode=smrheidi \
                 --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
                 --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
-                --inputdir=/home/mlam/gwas_ncog/smrinput \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
                 --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/Brain-eMeta \
                 --eqtlfile=Brain-eMeta \
                 --maf_filter=0.01 \
-                --outputdir=/home/mlam/gwas_ncog/smroutput
+                --outputdir=/home/mlam/gwas_ncog_v2/smroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --owm=Y \
+                --twasmode=smrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_HCP100_summary \
+                --eqtlfile=Gandal_PsychENCODE_eQTL_HCP100+gPCs20_QTLtools \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_ncog_v2/smroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --owm=Y \
+                --twasmode=smrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_PEER50_summary \
+                --eqtlfile=DER-08a_hg19_eQTL.significant \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_ncog_v2/smroutput
+        
+        #msmr
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/Brain-eMeta \
+                --eqtlfile=Brain-eMeta \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_ncog_v2/msmroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_HCP100_summary \
+                --eqtlfile=Gandal_PsychENCODE_eQTL_HCP100+gPCs20_QTLtools \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_ncog_v2/msmroutput
+
+           bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --owm=Y \
+                --twasmode=msmrheidi \
+                --path2smr=/home/mlam/bin/TWAS-dev-1/GCTA_smr_heidi \
+                --path2ref=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/1000G_Ref/EUR_ref \
+                --inputdir=/home/mlam/gwas_ncog_v2/smrinput \
+                --eqtldir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/SMR/PsychENCODE_cis_eqtl_PEER50_summary \
+                --eqtlfile=DER-08a_hg19_eQTL.significant \
+                --maf_filter=0.01 \
+                --outputdir=/home/mlam/gwas_ncog_v2/msmroutput
+
 
         #spredixcan 
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
