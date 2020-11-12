@@ -153,21 +153,44 @@
 
 
         #spredixcan 
+
+
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=cog_mtag \
                 --owm=Y \
                 --twasmode=spredixcan \
                 --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models \
-                --path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz \
                 --outputdir=/home/mlam/gwas_cog/spredixcanoutput \
                 --path2gwasdir=/home/mlam/gwas_cog/spredixcan \
                 --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
                 --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --owm=Y \
+                --twasmode=spredixcan \
+                --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models_splicing \
+                --outputdir=/home/mlam/gwas_cog/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_cog/spredixcan \
+                --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
+                --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
+
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=cog_mtag \
+                --owm=Y \
+                --twasmode=spredixcan \
+                --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/cmc_models \
+                --outputdir=/home/mlam/gwas_cog/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_cog/spredixcan \
+                --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
+                --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
+
+
         #focus
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=cog_mtag \
                 --twasmode=focus \
+                --owm=Y \
                 --sumstats=/home/mlam/gwas_cog/focus/cog_mtag.focus.input.sumstats.gz \
                 --referencedir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/1000G_EUR_Phase3_plink \
                 --eqtlfile=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/focus.db \
@@ -277,26 +300,50 @@
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=ncog_gsem \
                 --twasmode=spredixcan \
+                --owm=T \
                 --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models \
-                --path2predixcov=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models/gtex_v8_expression_elastic_net_snp_smultixcan_covariance.txt.gz \
-                --outputdir=/home/mlam/gwas_ncog/spredixcanoutput \
-                --path2gwasdir=/home/mlam/gwas_ncog/spredixcan \
+                --outputdir=/home/mlam/gwas_ncog_v2/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_ncog_v2/spredixcan \
                 --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
                 --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
 
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --twasmode=spredixcan \
+                --owm=T \
+                --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/elastic_net_models_splicing \
+                --outputdir=/home/mlam/gwas_ncog_v2/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_ncog_v2/spredixcan \
+                --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
+                --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
+
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                --output=ncog_gsem \
+                --twasmode=spredixcan \
+                --owm=T \
+                --path2predixdb=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/predixcan/cmc_models \
+                --outputdir=/home/mlam/gwas_ncog_v2/spredixcanoutput \
+                --path2gwasdir=/home/mlam/gwas_ncog_v2/spredixcan \
+                --path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin \
+                --path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
+        
+        
         #focus
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 --output=ncog_gsem \
                 --twasmode=focus \
-                --sumstats=/home/mlam/gwas_ncog/focus/ncog_gsem.focus.input.sumstats.gz \
+                --owm=Y \
+                --sumstats=/home/mlam/gwas_ncog_v2/focus/ncog_gsem.focus.input.sumstats.gz \
                 --referencedir=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/1000G_EUR_Phase3_plink \
                 --eqtlfile=/home/mlam/cognition-ext-disk-2/TWAS_Reference/Reference_files/focus/focus.db \
                 --focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin \
                 --path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin \
-                --outputdir=/home/mlam/gwas_ncog/focusoutput    
+                --outputdir=/home/mlam/gwas_ncog_v2/focusoutput    
     #################
 
         #test 
+
+            # noncog version 1 
             bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
                 output=ncog_gsem 
                 sumstats=NonCog_cogent_version_run1_sumstats.v2.N.txt.gz 
@@ -310,6 +357,26 @@
                 SE=12 
                 PVAL=14 
                 N=16 
+                twasmode=input 
+                focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin 
+                path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
+
+
+            # noncog version 2
+            bash /home/mlam/bin/TWAS-dev-1/TWAS-wrapper-dev-1_.sh \
+                output=ncog_gsem 
+                sumstats=NonCog_aligned.txt.gz 
+                owm=Y
+                SNP=1 
+                CHR=2 
+                BP=3 
+                A1=4 
+                A2=5 
+                FRQ=6 
+                BETA=7 
+                SE=9 
+                PVAL=10 
+                N=11 
                 twasmode=input 
                 focus_env=/home/mlam/bin/anaconda3/envs/pyfocus/bin 
                 path2focus=/home/mlam/bin/TWAS-dev-1/focus/bin
@@ -501,3 +568,182 @@
                 path2predixcan_env=/home/mlam/bin/anaconda3/envs/imlabtools/bin 
                 path2spredixcan=/home/mlam/bin/TWAS-dev-1/MetaXcan/software
 
+####
+
+    # Conslidate processed results 
+
+        # mSMR brain emeta 
+
+            # make header for regions 
+                echo "chr start stop esembleid" > smr_gene_regions.txt
+                echo "probeID ProbeChr Gene Probe_bp topSNP topSNP_chr topSNP_bp A1 A2 Freq b_GWAS se_GWAS p_GWAS b_eQTL se_eQTL p_eQTL b_SMR se_SMR p_SMR p_SMR_multi p_HEIDI nsnp_HEIDI" > smr_results.txt 
+
+            prefix=cog_mtag
+
+            for i in {1..22}
+                do 
+
+                    echo "cat $prefix.chr.$i.msmr.output.prbregion4msmr.list >> smr_gene_regions.txt"
+
+                    echo "cat $prefix.chr.$i.msmr.output.msmr | awk '{print \$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,\$10,\$11,\$12,\$13,\$14,\$15,\$16,\$17,\$18,\$19,\$20,\$21,\$22}' | sed '1,1d' >> smr_results.txt"
+            done > consolidate.smr.results.sh
+
+            echo "paste -d ' ' smr_gene_regions.txt smr_results.txt > smr_consolidated_results.txt" >> consolidate.smr.results.sh
+
+            bash consolidate.smr.results.sh
+
+        
+        # spredixcan  
+            
+            # make header 
+
+                # cmc
+                prefix=ncog_gsem
+                
+                echo "DLPFC_newMetax.db" > tissue.list
+
+                while read tissue
+                    do 
+                        echo "CHR gene gene_name zscore effect_size pvalue var_g pred_perf_r2 pred_perf_pval pred_perf_qval n_snps_used n_snps_in_cov n_snps_in_model" > $prefix.$tissue.spredixcan.results.txt
+                done < tissue.list
+
+                for i in {1..22}
+                    do 
+                        while read tissue
+                            do 
+                                echo "cat $prefix.chr$i.$tissue.csv | tr ',' ' ' | sed '1,1d' | awk -v CHR=$i '{print CHR,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,\$10,\$11,\$12}' >> $prefix.$tissue.spredixcan.results.txt"
+                        done < tissue.list
+                done > consolidate.spredixcan.results.sh
+
+                bash consolidate.spredixcan.results.sh
+
+                # gtex8
+                prefix=ncog_gsem
+                    echo "en_Adipose_Subcutaneous.db
+                    en_Adipose_Visceral_Omentum.db
+                    en_Adrenal_Gland.db
+                    en_Artery_Aorta.db
+                    en_Artery_Coronary.db
+                    en_Artery_Tibial.db
+                    en_Brain_Amygdala.db
+                    en_Brain_Anterior_cingulate_cortex_BA24.db
+                    en_Brain_Caudate_basal_ganglia.db
+                    en_Brain_Cerebellar_Hemisphere.db
+                    en_Brain_Cerebellum.db
+                    en_Brain_Cortex.db
+                    en_Brain_Frontal_Cortex_BA9.db
+                    en_Brain_Hippocampus.db
+                    en_Brain_Hypothalamus.db
+                    en_Brain_Nucleus_accumbens_basal_ganglia.db
+                    en_Brain_Putamen_basal_ganglia.db
+                    en_Brain_Spinal_cord_cervical_c-1.db
+                    en_Brain_Substantia_nigra.db
+                    en_Breast_Mammary_Tissue.db
+                    en_Cells_Cultured_fibroblasts.db
+                    en_Cells_EBV-transformed_lymphocytes.db
+                    en_Colon_Sigmoid.db
+                    en_Colon_Transverse.db
+                    en_Esophagus_Gastroesophageal_Junction.db
+                    en_Esophagus_Mucosa.db
+                    en_Esophagus_Muscularis.db
+                    en_Heart_Atrial_Appendage.db
+                    en_Heart_Left_Ventricle.db
+                    en_Kidney_Cortex.db
+                    en_Liver.db
+                    en_Lung.db
+                    en_Minor_Salivary_Gland.db
+                    en_Muscle_Skeletal.db
+                    en_Nerve_Tibial.db
+                    en_Ovary.db
+                    en_Pancreas.db
+                    en_Pituitary.db
+                    en_Prostate.db
+                    en_Skin_Not_Sun_Exposed_Suprapubic.db
+                    en_Skin_Sun_Exposed_Lower_leg.db
+                    en_Small_Intestine_Terminal_Ileum.db
+                    en_Spleen.db
+                    en_Stomach.db
+                    en_Testis.db
+                    en_Thyroid.db
+                    en_Uterus.db
+                    en_Vagina.db
+                    en_Whole_Blood.db" > tissue.list
+
+                while read tissue
+                    do 
+                        echo "CHR gene gene_name zscore effect_size pvalue var_g pred_perf_r2 pred_perf_pval pred_perf_qval n_snps_used n_snps_in_cov n_snps_in_model" > $prefix.$tissue.spredixcan.results.txt
+                done < tissue.list
+
+                for i in {1..22}
+                    do 
+                        while read tissue
+                            do 
+                                echo "cat $prefix.chr$i.$tissue.csv | tr ',' ' ' | sed '1,1d' | awk -v CHR=$i '{print CHR,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,\$10,\$11,\$12}' >> $prefix.$tissue.spredixcan.results.txt"
+                        done < tissue.list
+                done > consolidate.spredixcan.results.sh
+
+                # gtex splicing 
+                
+                prefix=cog_mtag
+                    echo "gtex_splicing_v8_eur_Adipose_Subcutaneous_signif.db
+                    gtex_splicing_v8_eur_Adipose_Visceral_Omentum_signif.db
+                    gtex_splicing_v8_eur_Adrenal_Gland_signif.db
+                    gtex_splicing_v8_eur_Artery_Aorta_signif.db
+                    gtex_splicing_v8_eur_Artery_Coronary_signif.db
+                    gtex_splicing_v8_eur_Artery_Tibial_signif.db
+                    gtex_splicing_v8_eur_Brain_Amygdala_signif.db
+                    gtex_splicing_v8_eur_Brain_Anterior_cingulate_cortex_BA24_signif.db
+                    gtex_splicing_v8_eur_Brain_Caudate_basal_ganglia_signif.db
+                    gtex_splicing_v8_eur_Brain_Cerebellar_Hemisphere_signif.db
+                    gtex_splicing_v8_eur_Brain_Cerebellum_signif.db
+                    gtex_splicing_v8_eur_Brain_Cortex_signif.db
+                    gtex_splicing_v8_eur_Brain_Frontal_Cortex_BA9_signif.db
+                    gtex_splicing_v8_eur_Brain_Hippocampus_signif.db
+                    gtex_splicing_v8_eur_Brain_Hypothalamus_signif.db
+                    gtex_splicing_v8_eur_Brain_Nucleus_accumbens_basal_ganglia_signif.db
+                    gtex_splicing_v8_eur_Brain_Putamen_basal_ganglia_signif.db
+                    gtex_splicing_v8_eur_Brain_Spinal_cord_cervical_c-1_signif.db
+                    gtex_splicing_v8_eur_Brain_Substantia_nigra_signif.db
+                    gtex_splicing_v8_eur_Breast_Mammary_Tissue_signif.db
+                    gtex_splicing_v8_eur_Cells_Cultured_fibroblasts_signif.db
+                    gtex_splicing_v8_eur_Cells_EBV-transformed_lymphocytes_signif.db
+                    gtex_splicing_v8_eur_Colon_Sigmoid_signif.db
+                    gtex_splicing_v8_eur_Colon_Transverse_signif.db
+                    gtex_splicing_v8_eur_Esophagus_Gastroesophageal_Junction_signif.db
+                    gtex_splicing_v8_eur_Esophagus_Mucosa_signif.db
+                    gtex_splicing_v8_eur_Esophagus_Muscularis_signif.db
+                    gtex_splicing_v8_eur_Heart_Atrial_Appendage_signif.db
+                    gtex_splicing_v8_eur_Heart_Left_Ventricle_signif.db
+                    gtex_splicing_v8_eur_Kidney_Cortex_signif.db
+                    gtex_splicing_v8_eur_Liver_signif.db
+                    gtex_splicing_v8_eur_Lung_signif.db
+                    gtex_splicing_v8_eur_Minor_Salivary_Gland_signif.db
+                    gtex_splicing_v8_eur_Muscle_Skeletal_signif.db
+                    gtex_splicing_v8_eur_Nerve_Tibial_signif.db
+                    gtex_splicing_v8_eur_Ovary_signif.db
+                    gtex_splicing_v8_eur_Pancreas_signif.db
+                    gtex_splicing_v8_eur_Pituitary_signif.db
+                    gtex_splicing_v8_eur_Prostate_signif.db
+                    gtex_splicing_v8_eur_Skin_Not_Sun_Exposed_Suprapubic_signif.db
+                    gtex_splicing_v8_eur_Skin_Sun_Exposed_Lower_leg_signif.db
+                    gtex_splicing_v8_eur_Small_Intestine_Terminal_Ileum_signif.db
+                    gtex_splicing_v8_eur_Spleen_signif.db
+                    gtex_splicing_v8_eur_Stomach_signif.db
+                    gtex_splicing_v8_eur_Testis_signif.db
+                    gtex_splicing_v8_eur_Thyroid_signif.db
+                    gtex_splicing_v8_eur_Uterus_signif.db
+                    gtex_splicing_v8_eur_Vagina_signif.db
+                    gtex_splicing_v8_eur_Whole_Blood_signif.db" > tissue.list
+
+                while read tissue
+                    do 
+                        echo "CHR gene gene_name zscore effect_size pvalue var_g pred_perf_r2 pred_perf_pval pred_perf_qval n_snps_used n_snps_in_cov n_snps_in_model" > $prefix.$tissue.spredixcan.results.txt
+                done < tissue.list
+
+                for i in {1..22}
+                    do 
+                        while read tissue
+                            do 
+                                echo "cat $prefix.chr$i.$tissue.csv | tr ',' ' ' | sed '1,1d' | awk -v CHR=$i '{print CHR,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,\$10,\$11,\$12}' >> $prefix.$tissue.spredixcan.results.txt"
+                        done < tissue.list
+                done > consolidate.spredixcan.results.sh
